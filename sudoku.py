@@ -132,7 +132,6 @@ def solve_sudoku_puzzles(input_file, output_file):
                 continue  # skip empty lines
             # Build CNF for this puzzle.
             cnf = build_cnf(puzzle)
-            # Use pycosat to solve the CNF.
             solution = pycosat.solve(cnf)
             if solution == "UNSAT":
                 solved_puzzle = "No solution"
@@ -141,12 +140,9 @@ def solve_sudoku_puzzles(input_file, output_file):
                 grid = decode_solution(solution)
                 # Convert grid to a single line string
                 solved_puzzle = "".join(str(cell) for row in grid for cell in row)
-            # Write the solved puzzle to the output file.
             outfile.write(solved_puzzle + "\n")
 
-# Example usage:
-# if __name__ == '__main__':
-    # Replace 'sudoku_input.txt' with your input filename
+
 input_filename = 'p.txt'
 output_filename = 'sudoku_output.txt'
 solve_sudoku_puzzles(input_filename, output_filename)
