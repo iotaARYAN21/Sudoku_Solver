@@ -110,14 +110,13 @@ def decode_solution(solution):
     # print(solution)
     for literal in solution: 
         try:
-            if literal > 0:
+            if literal > 0:  # if the puzzle solution is not possible then if it compares a dot(.) then can give incompatible comparison error between string and int value
                 # Reverse the mapping: cell_encode = 100*r + 10*c + v.
                 v = literal % 10
                 c = (literal // 10) % 10
                 r = literal // 100
                 grid[r - 1][c - 1] = v
         except Exception as e:
-            print("Unsatisfiable")
             return grid
     return grid
 
